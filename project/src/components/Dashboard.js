@@ -1,21 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Tab, Button, Card, Image  } from 'semantic-ui-react'
+import { Container, Tab, Button, Card, Image  } from 'semantic-ui-react'
+import Navbar from "./Navbar";
+import Question from "./Question";
+import { BrowserRouter, Link } from "react-router-dom";
 
 class Dashboard extends Component {
+    
     render() {
         const { authedUser, questions, users } = this.props;
         return (
-            <div>
-                <Tab menu={{ pointing: true }} panes={getPanes(questions, users, authedUser)} />
-            </div>
+            <Container>
+                <BrowserRouter>
+                  <Navbar />
+                  <Tab menu={{ pointing: true }} panes={getPanes(questions, users, authedUser)} />
+                </BrowserRouter>
+            </Container>
         )
     }
 }
 
+function showQuestion(e, questionId) {
+  let path = `/questions/`+questionId;
+  this.props.history.push(path);
+}
 
 const card = (aqs, users, id) => (
-    <Card key={id}>
+    <Card key={id} onClick={(e) => showQuestion(e, id)}>
       <Card.Content>
         <Image
           floated='right'
@@ -30,23 +41,25 @@ const card = (aqs, users, id) => (
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button basic color='green'>
-          {aqs[id].optionOne.text}
-          </Button>
-          <Button basic color='red'>
-          {aqs[id].optionTwo.text}
-          </Button>
+          <Link to={"/questions/" + aqs[id].id} >
+            <Button basic color='green'>
+                {aqs[id].optionOne.text}
+            </Button>
+          </Link>
+          <Link to={"/questions/" + aqs[id].id} >
+            <Button basic color='red'>
+              {aqs[id].optionTwo.text}
+            </Button>
+          </Link>
         </div>
       </Card.Content>
     </Card>
 )
 
-
-
 function getPanes(questions, users, authedUser){
     let aqs = getAnsweredQuestions(questions, users, authedUser)
     let uqs = getUnAnsweredQuestions(questions, users, authedUser)
-    let tabs = ['answered', 'Unanswered']
+    let tabs = ['Unanswered', 'answered']
 
     return tabs.map(function(tab) {
       let qs =  tab == 'answered' ? aqs : uqs
@@ -55,10 +68,11 @@ function getPanes(questions, users, authedUser){
         render: () =>
         <Tab.Pane attached={false}>
             {Object.keys(qs).map( function(id){
+              {id !== null
               return <Card.Group key={id}>
                 {card(qs, users, id)}
             </Card.Group>
-            })}
+            }})}
             </Tab.Pane>
       }
     }) 

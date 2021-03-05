@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 import LoadingBar  from 'react-redux-loading'
-import {
-  Header,
-  Form,
-} from 'semantic-ui-react';
+import { Container, Header, Form } from 'semantic-ui-react';
 
 class Login extends Component {
   state = {
@@ -27,6 +24,7 @@ class Login extends Component {
   render() {
     let {users}  = this.props;
         return (
+          <Container>
             <form action="post" onSubmit={this.submitForm}>
               <LoadingBar />
               <Header as="h1" color="red">
@@ -43,6 +41,7 @@ class Login extends Component {
               </select>
               <input type="submit" value="Submit" />
             </form>
+          </Container>
         );
       }
 }
