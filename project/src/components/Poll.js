@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Radio , Card, Image  } from 'semantic-ui-react'
+import { handleSaveUserAnswer } from '../actions/users';
 
 class Poll extends Component {
+    saveAnswer = (e, {value}) => {
+        let auth = this.props.users[this.props.authedUser[0]]
+
+        handleSaveUserAnswer(auth, this.props.match.params.id, value)
+    };
+    
     render() {
         const id = this.props.match.params.id
         const { questions, users, authedUser } = this.props
         const question = questions[id]
 
+
         function getAnswer() {
-            console.log(question.optionTwo.votes.includes(authedUser[0]))
             if(question.optionOne.votes.includes(authedUser[0])) {
                 return question.optionOne.text
             }else if(question.optionTwo.votes.includes(authedUser[0])) {
@@ -36,7 +43,7 @@ class Poll extends Component {
                 <Card.Content extra>
                     <Form>
                         <Form.Field>
-                        {getAnswer() ? ("Your answer is :" + getAnswer().text) : '' }
+                        {getAnswer() ? ("Your answer is :" + getAnswer()) : '' }
                         </Form.Field>
                         <Form.Field>
                         <Radio
@@ -44,7 +51,7 @@ class Poll extends Component {
                             name='radioGroup'
                             value={question.optionOne.text}
                             checked={getAnswer() === question.optionOne.text}
-                            onChange={this.handleChange}
+                            onChange={this.saveAnswer}
                         />
                         </Form.Field>
                         <Form.Field>
@@ -53,7 +60,7 @@ class Poll extends Component {
                             name='radioGroup'
                             value={question.optionTwo.text}
                             checked={getAnswer() === question.optionTwo.text}
-                            onChange={this.handleChange}
+                            onChange={this.saveAnswer}
                         />
                         </Form.Field>
                     </Form>

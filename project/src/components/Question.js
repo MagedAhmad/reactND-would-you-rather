@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Card, Image  } from 'semantic-ui-react'
-import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Poll from './Poll'
+import { Link } from "react-router-dom";
 
 class Question extends Component {
     
     render() {
-        const { authedUser, questions, users, id } = this.props;
+        const { questions, users, id } = this.props;
 
         return (
             <div>

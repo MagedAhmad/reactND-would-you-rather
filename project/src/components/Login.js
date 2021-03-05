@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import LoadingBar  from 'react-redux-loading'
 import { setAuthedUser } from "../actions/authedUser";
-import { Container, Header, Form } from 'semantic-ui-react';
+import { Container, Header } from 'semantic-ui-react';
 
 class Login extends Component {
   state = {

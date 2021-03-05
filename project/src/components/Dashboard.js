@@ -20,17 +20,16 @@ function getPanes(questions, users, authedUser){
     let tabs = ['Unanswered', 'answered']
 
     return tabs.map(function(tab) {
-      let qs =  tab == 'answered' ? aqs : uqs
+      let qs =  tab === 'answered' ? aqs : uqs
       return {
         menuItem: tab,
         render: () =>
         <Tab.Pane attached={false}>
             {Object.keys(qs).map( function(id){
-              {id !== null
               return <Card.Group key={id}>
                 <Question id={qs[id].id}></Question>
             </Card.Group>
-            }})}
+            })}
             </Tab.Pane>
       }
     }) 
