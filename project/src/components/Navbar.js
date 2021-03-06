@@ -29,7 +29,7 @@ class Navbar extends Component {
                 </Menu.Item>
                 
                 <Menu.Item>
-                    <NavLink to="/create" exact activeClassName="active">
+                    <NavLink to="/add" exact activeClassName="active">
                         Create a Poll
                     </NavLink>
                 </Menu.Item>
@@ -44,10 +44,9 @@ class Navbar extends Component {
     }
 }
 
-function mapStateToProps({authedUser, setAuthedUser}) {
+function mapStateToProps({authedUser}) {
     return {
-        authedUser,
-        setAuthedUser
+        authedUser
     }
 }
 

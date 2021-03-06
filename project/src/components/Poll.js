@@ -31,7 +31,7 @@ class Poll extends Component {
 
 
         return (
-            <Card key={id}>
+            <Card key={id} style={{width: 500 + 'px', 'margin': 'auto'}}>
                 <Card.Content>
                     <Image
                     floated='right'
@@ -55,7 +55,15 @@ class Poll extends Component {
                             checked={getAnswer() === question.optionOne.text}
                             onChange={this.saveAnswer}
                             disabled={getAnswer() !== null}
-                        />: <Progress value={optionOneTimes} total={total} progress='percent' indicating>{getAnswer() === question.optionOne.text ? 'You answer: ' + question.optionOne.text : question.optionOne.text}</Progress>
+                        />: <Progress value={optionOneTimes} total={total} progress='percent' indicating>
+                               
+                                {
+                                    getAnswer() === question.optionOne.text ? 
+                                        'You answer: ' + question.optionOne.text : 
+                                        question.optionOne.text
+                                }
+                                ({optionOneTimes} votes)
+                            </Progress>
                             }
                         </Form.Field>
                         <Form.Field>
@@ -68,8 +76,16 @@ class Poll extends Component {
                             onChange={this.saveAnswer}
                             disabled={getAnswer() !== null}
                         />
-                        : <Progress value={optionTwoTimes} total={total} progress='percent' indicating>{getAnswer() === question.optionTwo.text ? 'You answer: ' + question.optionTwo.text : question.optionTwo.text}</Progress>
+                        : <Progress value={optionTwoTimes} total={total} progress='percent' indicating>
+                            
+                            {
+                                getAnswer() === question.optionTwo.text ? 
+                                    'You answer: ' + question.optionTwo.text : 
+                                    question.optionTwo.text
                             }
+                            ({optionTwoTimes} votes)
+                            </Progress>
+                        }
                         </Form.Field>
                     </Form>
                 </Card.Content>
