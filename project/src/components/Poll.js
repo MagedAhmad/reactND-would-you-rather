@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Form, Radio , Card, Image  } from 'semantic-ui-react'
+import { Form, Radio , Card, Image, Progress  } from 'semantic-ui-react'
 import { handleSaveUserAnswer } from '../actions/users';
 
 class Poll extends Component {
-
-
     saveAnswer = (e, {value}) => {
         let auth = this.props.users[this.props.authedUser[0]]
-        this.props.dispatch(handleSaveUserAnswer(auth.id, this.props.match.params.id, value))
 
-        console.log(this.props.questions[this.props.match.params.id])
+        this.props.dispatch(handleSaveUserAnswer(auth.id, this.props.match.params.id, value))
     };
     
     render() {
         const id = this.props.match.params.id
         const { questions, users, authedUser } = this.props
         const question = questions[id]
-
 
         function getAnswer() {
             if(question.optionOne.votes.includes(authedUser[0])) {
@@ -28,6 +24,11 @@ class Poll extends Component {
 
             return null
         }
+        
+        let optionOneTimes = question.optionOne.votes.length
+        let optionTwoTimes = question.optionTwo.votes.length
+        let total = optionOneTimes + optionTwoTimes
+
 
         return (
             <Card key={id}>
@@ -46,22 +47,29 @@ class Poll extends Component {
                 <Card.Content extra>
                     <Form>
                         <Form.Field>
+                            {getAnswer() === null ? 
                         <Radio
                             label={question.optionOne.text}
                             name='radioGroup'
                             value="optionOne"
                             checked={getAnswer() === question.optionOne.text}
                             onChange={this.saveAnswer}
-                        />
+                            disabled={getAnswer() !== null}
+                        />: <Progress value={optionOneTimes} total={total} progress='percent' indicating>{getAnswer() === question.optionOne.text ? 'You answer: ' + question.optionOne.text : question.optionOne.text}</Progress>
+                            }
                         </Form.Field>
                         <Form.Field>
+                        {getAnswer() === null ? 
                         <Radio
                             label={question.optionTwo.text}
                             name='radioGroup'
                             value="optionTwo"
                             checked={getAnswer() === question.optionTwo.text}
                             onChange={this.saveAnswer}
+                            disabled={getAnswer() !== null}
                         />
+                        : <Progress value={optionTwoTimes} total={total} progress='percent' indicating>{getAnswer() === question.optionTwo.text ? 'You answer: ' + question.optionTwo.text : question.optionTwo.text}</Progress>
+                            }
                         </Form.Field>
                     </Form>
                 </Card.Content>
