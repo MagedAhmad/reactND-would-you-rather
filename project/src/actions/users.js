@@ -22,9 +22,9 @@ export function saveUserAnswer (auth, qid, option) {
 
 export function handleSaveUserAnswer(auth, qid, answer) {
     return (dispatch) => {
-      dispatch(saveUserAnswer(auth, qid, answer));
-      dispatch(addAnswerToQuestion(auth, qid, answer));
-  
-      return saveQuestionAnswer(auth, qid, answer)
+      return saveQuestionAnswer(auth, qid, answer).then(() => {
+        dispatch(saveUserAnswer(auth, qid, answer));
+        dispatch(addAnswerToQuestion(auth, qid, answer));
+      })
     }
 }

@@ -4,10 +4,13 @@ import { Form, Radio , Card, Image  } from 'semantic-ui-react'
 import { handleSaveUserAnswer } from '../actions/users';
 
 class Poll extends Component {
+
+
     saveAnswer = (e, {value}) => {
         let auth = this.props.users[this.props.authedUser[0]]
-
         this.props.dispatch(handleSaveUserAnswer(auth.id, this.props.match.params.id, value))
+
+        console.log(this.props.questions[this.props.match.params.id])
     };
     
     render() {
@@ -42,9 +45,6 @@ class Poll extends Component {
                 </Card.Content>
                 <Card.Content extra>
                     <Form>
-                        <Form.Field>
-                        {getAnswer() ? ("Your answer is :" + getAnswer()) : '' }
-                        </Form.Field>
                         <Form.Field>
                         <Radio
                             label={question.optionOne.text}
