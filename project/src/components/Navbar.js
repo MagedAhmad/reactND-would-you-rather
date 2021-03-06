@@ -2,10 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
+import { setUserOut } from "../actions/authedUser";
 
 class Navbar extends Component {
+    
+    handleLogout = (e) => {
+        e.preventDefault();
+        
+        this.props.dispatch(setUserOut());
+    };
+
     render() {
         const { authedUser } = this.props;
+        
         return (
             <Menu secondary>
                 <Menu.Item>
@@ -28,18 +37,17 @@ class Navbar extends Component {
                     <Menu.Item
                     name={authedUser[0]}
                     />
-                    <Menu.Item
-                        name='logout'
-                    />
+                    <Menu.Item name="Logout" onClick={this.handleLogout}/>
                 </Menu.Menu>
             </Menu>
         )
     }
 }
 
-function mapStateToProps({authedUser}) {
+function mapStateToProps({authedUser, setAuthedUser}) {
     return {
         authedUser,
+        setAuthedUser
     }
 }
 
