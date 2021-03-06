@@ -20,11 +20,11 @@ export function saveUserAnswer (auth, qid, option) {
     }
 }
 
-export function handleSaveUserAnswer(authUser, qid, answer) {
-    return dispatch => {
-      dispatch(saveUserAnswer(authUser, qid, answer));
-      dispatch(addAnswerToQuestion(authUser, qid, answer));
+export function handleSaveUserAnswer(auth, qid, answer) {
+    return (dispatch) => {
+      dispatch(saveUserAnswer(auth, qid, answer));
+      dispatch(addAnswerToQuestion(auth, qid, answer));
   
-      return saveQuestionAnswer(authUser, qid, answer);
-    };
+      return saveQuestionAnswer(auth, qid, answer)
+    }
 }

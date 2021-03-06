@@ -7,7 +7,7 @@ class Poll extends Component {
     saveAnswer = (e, {value}) => {
         let auth = this.props.users[this.props.authedUser[0]]
 
-        handleSaveUserAnswer(auth, this.props.match.params.id, value)
+        this.props.dispatch(handleSaveUserAnswer(auth.id, this.props.match.params.id, value))
     };
     
     render() {
@@ -49,7 +49,7 @@ class Poll extends Component {
                         <Radio
                             label={question.optionOne.text}
                             name='radioGroup'
-                            value={question.optionOne.text}
+                            value="optionOne"
                             checked={getAnswer() === question.optionOne.text}
                             onChange={this.saveAnswer}
                         />
@@ -58,7 +58,7 @@ class Poll extends Component {
                         <Radio
                             label={question.optionTwo.text}
                             name='radioGroup'
-                            value={question.optionTwo.text}
+                            value="optionTwo"
                             checked={getAnswer() === question.optionTwo.text}
                             onChange={this.saveAnswer}
                         />
