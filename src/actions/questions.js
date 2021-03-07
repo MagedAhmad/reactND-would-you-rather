@@ -30,7 +30,9 @@ export function addQuestion (question) {
 
 export function handleAddQuestion (question) {
     return (dispatch) => {
-      console.log("try")
-        
+      return saveQuestion(question).then((question) => {
+        dispatch(addQuestion(question))
+        dispatch(saveUserQuestion(question))
+      })
     }
 }

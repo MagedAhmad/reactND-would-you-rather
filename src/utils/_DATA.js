@@ -148,27 +148,28 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
 }
 
 export function _saveQuestion (question) {
-  // return new Promise((res, rej) => {
-  //   const authedUser = question.author;
-  //   const formattedQuestion = formatQuestion(question);
+  console.log(question)
+  return new Promise((res, rej) => {
+    const authedUser = question.author;
+    const formattedQuestion = formatQuestion(question);
 
-  //   setTimeout(() => {
-  //     questions = {
-  //       ...questions,
-  //       [formattedQuestion.id]: formattedQuestion
-  //     }
+    setTimeout(() => {
+      questions = {
+        ...questions,
+        [formattedQuestion.id]: formattedQuestion
+      }
       
-  //     users = {
-  //       ...users,
-  //       [authedUser]: {
-  //         ...users[authedUser],
-  //         questions: users[authedUser].questions.concat([formattedQuestion.id])
-  //       }
-  //     }
+      users = {
+        ...users,
+        [authedUser]: {
+          ...users[authedUser],
+          questions: users[authedUser].questions.concat([formattedQuestion.id])
+        }
+      }
 
-  //     res(formattedQuestion)
-  //   }, 1000)
-  // })
+      res(formattedQuestion)
+    }, 1000)
+  })
 }
 
 export function _saveQuestionAnswer ({ authedUser, qid, answer }) {

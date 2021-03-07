@@ -33,8 +33,6 @@ class NewPoll extends Component {
     }
 
     render() {
-        const { authedUser } = this.props;
-        
         return (
             <Form>
                 <h1>Would you rather ?</h1>
