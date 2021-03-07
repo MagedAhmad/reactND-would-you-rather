@@ -1,5 +1,9 @@
+import { saveUserQuestion } from './users';
+import { saveQuestion } from '../utils/api';
+
 export const GET_QUESTIONS = "get_questions";
 export const ADD_ANSWER_TO_QUESTION = 'add_answer_to_question';
+export const ADD_QUESTION = 'add_question';
 
 export function getQuestions(questions) {
     return { 
@@ -15,4 +19,18 @@ export function addAnswerToQuestion(authUser, qid, answer) {
       qid,
       answer
     };
+}
+
+export function addQuestion (question) {
+    return {
+      type: ADD_QUESTION,
+      question
+    }
+}
+
+export function handleAddQuestion (question) {
+    return (dispatch) => {
+      console.log("okjsa")
+        
+    }
 }

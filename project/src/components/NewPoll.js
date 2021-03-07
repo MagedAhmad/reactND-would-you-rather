@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
+import { handleAddQuestion } from '../actions/users';
 
 class NewPoll extends Component {
     state = {
@@ -14,17 +15,21 @@ class NewPoll extends Component {
             firstOption : e.target.value
         })
     };
-    handleOptionTwo= (e) => {
+    handleLastOption= (e) => {
         e.preventDefault();
         this.setState({
             lastOption : e.target.value
         })
     };
+    
     handleNewPoll= (e) => {
         e.preventDefault()
-        if(this.state.firstOption !== null && this.state.lastOption === null) {
-            // Submit poll question
-        }
+        
+        let first = this.state.firstOption
+        let last = this.state.lastOption
+        let user = this.props.authedUser[0]
+        
+        handleAddQuestion({first, last, user})
     }
 
     render() {
@@ -39,9 +44,9 @@ class NewPoll extends Component {
                 </Form.Field>
                 <Form.Field>
                     <label>Last Option</label>
-                    <input placeholder='Last Option' onChange={this.handleOptionTwo} />
+                    <input placeholder='Last Option' onChange={this.handleLastOption} />
                 </Form.Field>
-                <Button type='submit' onClick={handleNewPoll}>Add Question</Button>
+                <Button type='submit' onClick={this.handleNewPoll}>Add Question</Button>
             </Form>
         )
     }

@@ -1,8 +1,9 @@
-import { saveQuestionAnswer } from '../utils/api';
 import { addAnswerToQuestion } from '../actions/questions';
+import { saveQuestionAnswer } from '../utils/api';
 
 export const GET_USERS = "get_users";
 export const SAVE_USER_ANSWER = 'save_user_answer'
+export const SAVE_USER_QUESTION = 'save_user_answer'
 
 export function getUsers(users) {
     return { 
@@ -19,6 +20,15 @@ export function saveUserAnswer (auth, qid, option) {
       option
     }
 }
+
+export function saveUserQuestion (authedUser, qid) {
+  return {
+    type: SAVE_USER_QUESTION,
+    authedUser,
+    qid
+  }
+}
+
 
 export function handleSaveUserAnswer(auth, qid, answer) {
     return (dispatch) => {
