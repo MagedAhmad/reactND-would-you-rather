@@ -6,7 +6,6 @@ export function getInitialData () {
     return Promise.all([
         _getUsers(),
         _getQuestions(),
-        _saveQuestion()
     ]).then(([users, questions]) => ({
         users,
         questions,

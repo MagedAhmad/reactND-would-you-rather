@@ -32,7 +32,7 @@ export function handleAddQuestion (question) {
     return (dispatch) => {
       return saveQuestion(question).then((question) => {
         dispatch(addQuestion(question))
-        dispatch(saveUserQuestion(question))
+        // dispatch(saveUserQuestion(question))
       })
     }
 }

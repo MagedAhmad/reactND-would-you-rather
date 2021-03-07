@@ -21,14 +21,14 @@ export function saveUserAnswer (auth, qid, option) {
     }
 }
 
-export function saveUserQuestion (authedUser, qid) {
+export function saveUserQuestion (authedUser, optionOne, optionTwo) {
   return {
     type: SAVE_USER_QUESTION,
     authedUser,
-    qid
+    optionOne,
+    optionTwo
   }
 }
-
 
 export function handleSaveUserAnswer(auth, qid, answer) {
     return (dispatch) => {

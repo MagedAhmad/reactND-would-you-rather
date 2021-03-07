@@ -30,14 +30,3 @@ export function questions(state = {}, action) {
         return state;
     }
 }
-
-
-export function addAnswerToQuestion(authUser, qid, answer) {
-    return {
-      type: ADD_ANSWER_TO_QUESTION,
-      authUser,
-      qid,
-      answer
-    };
-  }
-  
