@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
-import { handleAddQuestion } from '../actions/users';
+import { handleAddQuestion } from '../actions/questions';
 
 class NewPoll extends Component {
     state = {
