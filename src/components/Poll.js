@@ -15,6 +15,12 @@ class Poll extends Component {
         const { questions, users, authedUser } = this.props
         const question = questions[id]
 
+        if(!question) {
+            return (
+                <h1>404</h1>
+            )
+        }
+
         function getAnswer() {
             if(question.optionOne.votes.includes(authedUser[0])) {
                 return question.optionOne.text

@@ -21,12 +21,11 @@ export function saveUserAnswer (auth, qid, option) {
     }
 }
 
-export function saveUserQuestion (authedUser, optionOne, optionTwo) {
+export function saveUserQuestion (authedUser, qid) {
   return {
     type: SAVE_USER_QUESTION,
     authedUser,
-    optionOne,
-    optionTwo
+    qid
   }
 }
 

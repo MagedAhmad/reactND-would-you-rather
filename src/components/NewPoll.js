@@ -25,11 +25,11 @@ class NewPoll extends Component {
     handleNewPoll= (e) => {
         e.preventDefault()
         
-        let first = this.state.firstOption
-        let last = this.state.lastOption
-        let user = this.props.authedUser[0]
-        
-        handleAddQuestion({first, last, user})
+        let optionOneText = this.state.firstOption
+        let optionTwoText = this.state.lastOption
+        let author = this.props.authedUser[0]
+
+        handleAddQuestion(optionOneText, optionTwoText, author)
     }
 
     render() {

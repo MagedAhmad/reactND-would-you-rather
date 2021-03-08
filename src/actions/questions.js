@@ -28,11 +28,14 @@ export function addQuestion (question) {
     }
 }
 
-export function handleAddQuestion (question) {
+export function handleAddQuestion (optionOneText, optionTwoText, authedUser) {
+    console.log('before')
     return (dispatch) => {
-      return saveQuestion(question).then((question) => {
+      console.log('after')
+      return saveQuestion({optionOneText, optionTwoText, authedUser}).then((question) => {
+        let qid = question.id
+        dispatch(saveUserQuestion(authedUser, qid))
         dispatch(addQuestion(question))
-        // dispatch(saveUserQuestion(question))
       })
     }
 }
