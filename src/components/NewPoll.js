@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Form } from 'semantic-ui-react'
-import { handleAddQuestion } from '../actions/questions';
+import { handleAddQuestion } from '../actions/shared';
 
 class NewPoll extends Component {
     state = {
@@ -29,7 +29,7 @@ class NewPoll extends Component {
         let optionTwoText = this.state.lastOption
         let author = this.props.authedUser[0]
 
-        handleAddQuestion(optionOneText, optionTwoText, author)
+        this.props.dispatch(handleAddQuestion(optionOneText, optionTwoText, author))
     }
 
     render() {

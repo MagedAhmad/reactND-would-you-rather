@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Radio , Card, Image, Progress  } from 'semantic-ui-react'
-import { handleSaveUserAnswer } from '../actions/users';
+import { handleSaveUserAnswer } from '../actions/shared';
 
 class Poll extends Component {
     saveAnswer = (e, {value}) => {
