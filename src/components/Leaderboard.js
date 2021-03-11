@@ -15,8 +15,8 @@ class Leaderboard extends Component {
           answersCount: Object.values(user.answers).length,
           questionsCount: user.questions.length,
         }))
-        .sort((a, b) => b.total - a.total)
-
+        .sort((a, b) => (b.answersCount + b.questionsCount) - (a.answersCount + a.questionsCount))
+      
       return scores
     }
 
